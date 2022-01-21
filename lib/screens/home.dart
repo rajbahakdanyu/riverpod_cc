@@ -3,15 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final counterProvider = StateProvider((ref) => 0);
 
-class CounterScreen extends ConsumerWidget {
-  const CounterScreen({Key? key}) : super(key: key);
+class HomeScreen extends ConsumerWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text('Counter Demo'),
+        title: const Text('Todo'),
       ),
       body: Center(
         child: Consumer(
