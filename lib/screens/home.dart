@@ -18,7 +18,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -92,10 +92,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * .8,
-                height: MediaQuery.of(context).size.height * .7,
+                height: MediaQuery.of(context).size.height * .65,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Container(),
+                  child: ListView.builder(
+                    itemCount: 30,
+                    itemBuilder: (context, i) {
+                      return const Text('data');
+                    },
+                  ),
                 ),
               ),
             ],
