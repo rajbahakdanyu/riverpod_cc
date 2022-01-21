@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'screens/home.dart';
 
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
       title: 'Riverpod CC',
       theme: ThemeData(
         primarySwatch: Colors.purple,
+        textTheme: TextTheme(
+          bodyText2: GoogleFonts.nunitoSans(),
+          headline4: GoogleFonts.pacifico(),
+        ),
       ),
       initialRoute: '/',
       routes: {

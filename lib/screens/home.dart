@@ -12,8 +12,11 @@ class HomeScreen extends ConsumerWidget {
         title: const Text('Todo'),
       ),
       body: Column(
-        children: const [
-          Text('Todo'),
+        children: [
+          Text(
+            'Todo',
+            style: Theme.of(context).textTheme.headline4,
+          ),
         ],
       ),
     );
