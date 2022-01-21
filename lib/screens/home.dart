@@ -52,20 +52,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     CustomTextButton(
-                      func: () {},
+                      func: () {
+                        setState(() {
+                          selectedTab = 'All';
+                        });
+                      },
                       title: 'All',
+                      value: selectedTab,
                     ),
                     CustomTextButton(
-                      func: () {},
+                      func: () {
+                        setState(() {
+                          selectedTab = 'Doing';
+                        });
+                      },
                       title: 'Doing',
+                      value: selectedTab,
                     ),
                     CustomTextButton(
-                      func: () {},
+                      func: () {
+                        setState(() {
+                          selectedTab = 'Done';
+                        });
+                      },
                       title: 'Done',
+                      value: selectedTab,
                     ),
                     CustomTextButton(
-                      func: () {},
+                      func: () {
+                        setState(() {
+                          selectedTab = 'Favorite';
+                        });
+                      },
                       title: 'Favorite',
+                      value: selectedTab,
                     ),
                   ],
                 ),

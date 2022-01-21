@@ -5,10 +5,12 @@ class CustomTextButton extends StatefulWidget {
     Key? key,
     required this.func,
     required this.title,
+    required this.value,
   }) : super(key: key);
 
   final VoidCallback func;
   final String title;
+  final String value;
 
   @override
   State<CustomTextButton> createState() => _CustomTextButtonState();
@@ -20,13 +22,18 @@ class _CustomTextButtonState extends State<CustomTextButton> {
     return TextButton(
       style: TextButton.styleFrom(
         splashFactory: NoSplash.splashFactory,
-        textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
       ),
       onPressed: widget.func,
-      child: Text(widget.title),
+      child: Text(
+        widget.title,
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              fontSize: 18,
+              fontWeight: widget.value == widget.title ? FontWeight.bold : null,
+              color: widget.value == widget.title
+                  ? Colors.purple
+                  : Colors.purple.shade300,
+            ),
+      ),
     );
   }
 }
