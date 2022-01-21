@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'screens/home.dart';
 
+final nameProvider = Provider((ref) => 'Danyu');
+
 void main() {
   runApp(
     const ProviderScope(

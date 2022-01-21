@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+import 'package:riverpod_cc/main.dart';
+
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final name = ref.watch(nameProvider);
 
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Hello World'),
+        child: Text(name),
       ),
     );
   }
