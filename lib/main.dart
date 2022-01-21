@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         textTheme: TextTheme(
           bodyText2: GoogleFonts.nunitoSans(),
-          headline4: GoogleFonts.pacifico(),
+          headline3: GoogleFonts.pacifico(
+            color: Colors.purple,
+          ),
         ),
       ),
       initialRoute: '/',

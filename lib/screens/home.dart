@@ -7,17 +7,24 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text('Todo'),
-      ),
-      body: Column(
-        children: [
-          Text(
-            'Todo',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-        ],
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Text(
+              'Todo',
+              style: Theme.of(context).textTheme.headline3,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: 'Enter task here',
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * .8,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
