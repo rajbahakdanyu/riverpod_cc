@@ -13,67 +13,64 @@ class HomeScreen extends ConsumerWidget {
         physics: const BouncingScrollPhysics(),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
-          child: DefaultTabController(
-            length: 4,
-            child: Column(
-              children: [
-                Text(
-                  'Todo',
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter task here',
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * .8,
-                    ),
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.purpleAccent,
-                      ),
-                    ),
+          child: Column(
+            children: [
+              Text(
+                'Todo',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Enter task here',
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .8,
                   ),
-                  controller: taskController,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  maxLines: 1,
-                  onFieldSubmitted: (value) {},
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .8,
-                  child: TabBar(
-                    labelColor: Colors.deepPurple,
-                    labelStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                    tabs: const [
-                      Text('All'),
-                      Text('Doing'),
-                      Text('Done'),
-                      Text('Favorite'),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .8,
-                  height: MediaQuery.of(context).size.height * .7,
-                  child: const Padding(
-                    padding: EdgeInsets.all(16),
-                    child: TabBarView(
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Text('All'),
-                        Text('Doing'),
-                        Text('Done'),
-                        Text('Favorite'),
-                      ],
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.purpleAccent,
                     ),
                   ),
                 ),
-              ],
-            ),
+                controller: taskController,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.done,
+                maxLines: 1,
+                onFieldSubmitted: (value) {},
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('All'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('Doing'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('Done'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('Favorite'),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .8,
+                height: MediaQuery.of(context).size.height * .7,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Container(),
+                ),
+              ),
+            ],
           ),
         ),
       ),
