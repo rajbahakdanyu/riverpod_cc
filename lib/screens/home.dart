@@ -21,6 +21,11 @@ class HomeScreen extends ConsumerWidget {
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width * .8,
                 ),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.purpleAccent,
+                  ),
+                ),
               ),
             ),
           ],
