@@ -10,52 +10,68 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: DefaultTabController(
-          length: 4,
-          child: Column(
-            children: [
-              Text(
-                'Todo',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Enter task here',
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * .8,
-                  ),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.purpleAccent,
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: DefaultTabController(
+            length: 4,
+            child: Column(
+              children: [
+                Text(
+                  'Todo',
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'Enter task here',
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * .8,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.purpleAccent,
+                      ),
                     ),
                   ),
+                  controller: taskController,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  maxLines: 1,
+                  onFieldSubmitted: (value) {},
                 ),
-                controller: taskController,
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.done,
-                maxLines: 1,
-                onFieldSubmitted: (value) {},
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * .8,
-                child: TabBar(
-                  labelColor: Colors.deepPurple,
-                  labelStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                  tabs: const [
-                    Text('All'),
-                    Text('Doing'),
-                    Text('Done'),
-                    Text('Favorite'),
-                  ],
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: TabBar(
+                    labelColor: Colors.deepPurple,
+                    labelStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                    tabs: const [
+                      Text('All'),
+                      Text('Doing'),
+                      Text('Done'),
+                      Text('Favorite'),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .8,
+                  height: MediaQuery.of(context).size.height * .7,
+                  child: const TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      Text('All'),
+                      Text('Doing'),
+                      Text('Done'),
+                      Text('Favorite'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
