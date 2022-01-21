@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '/widgets/custom_text_button.dart';
+
 class HomeScreen extends ConsumerWidget {
   HomeScreen({Key? key}) : super(key: key);
 
   final TextEditingController taskController = TextEditingController();
+
+  String selectedTab = 'All';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,21 +47,21 @@ class HomeScreen extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('All'),
+                    CustomTextButton(
+                      func: () {},
+                      title: 'All',
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('Doing'),
+                    CustomTextButton(
+                      func: () {},
+                      title: 'Doing',
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('Done'),
+                    CustomTextButton(
+                      func: () {},
+                      title: 'Done',
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('Favorite'),
+                    CustomTextButton(
+                      func: () {},
+                      title: 'Favorite',
                     ),
                   ],
                 ),
