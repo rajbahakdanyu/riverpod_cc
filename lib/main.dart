@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'screens/home.dart';
-
-final nameProvider = Provider((ref) => 'Danyu');
+import 'screens/counter.dart';
 
 void main() {
   runApp(
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const HomeScreen(),
+      home: const CounterScreen(),
     );
   }
 }
