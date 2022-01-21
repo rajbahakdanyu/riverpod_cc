@@ -60,14 +60,17 @@ class HomeScreen extends ConsumerWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .8,
                   height: MediaQuery.of(context).size.height * .7,
-                  child: const TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      Text('All'),
-                      Text('Doing'),
-                      Text('Done'),
-                      Text('Favorite'),
-                    ],
+                  child: const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        Text('All'),
+                        Text('Doing'),
+                        Text('Done'),
+                        Text('Favorite'),
+                      ],
+                    ),
                   ),
                 ),
               ],
