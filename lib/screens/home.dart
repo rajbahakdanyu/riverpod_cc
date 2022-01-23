@@ -15,6 +15,30 @@ final todoListProvider = StateNotifierProvider<TodoList, List<Todo>>((ref) {
 
 final todoListFilter = StateProvider((_) => TodoListFilter.all);
 
+final uncompletedTodosCount = Provider<int>((ref) {
+  return ref.watch(todoListProvider).where((todo) => !todo.completed).length;
+});
+
+final favoritedTodosCount = Provider<int>((ref) {
+  return ref.watch(todoListProvider).where((todo) => todo.favorited).length;
+});
+
+final filteredTodos = Provider<List<Todo>>((ref) {
+  final filter = ref.watch(todoListFilter);
+  final todos = ref.watch(todoListProvider);
+
+  switch (filter) {
+    case TodoListFilter.doing:
+      return todos.where((todo) => todo.completed).toList();
+    case TodoListFilter.done:
+      return todos.where((todo) => !todo.completed).toList();
+    case TodoListFilter.favorite:
+      return todos.where((todo) => todo.favorited).toList();
+    case TodoListFilter.all:
+      return todos;
+  }
+});
+
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
