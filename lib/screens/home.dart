@@ -29,9 +29,9 @@ final filteredTodos = Provider<List<Todo>>((ref) {
 
   switch (filter) {
     case TodoListFilter.doing:
-      return todos.where((todo) => todo.completed).toList();
-    case TodoListFilter.done:
       return todos.where((todo) => !todo.completed).toList();
+    case TodoListFilter.done:
+      return todos.where((todo) => todo.completed).toList();
     case TodoListFilter.favorite:
       return todos.where((todo) => todo.favorited).toList();
     case TodoListFilter.all:
