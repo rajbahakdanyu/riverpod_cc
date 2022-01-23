@@ -46,6 +46,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final todos = ref.watch(filteredTodos);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -74,7 +76,10 @@ class HomeScreen extends ConsumerWidget {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   maxLines: 1,
-                  onFieldSubmitted: (value) {},
+                  onFieldSubmitted: (value) {
+                    ref.read(todoListProvider.notifier).add(value);
+                    taskController.clear();
+                  },
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
@@ -116,7 +121,7 @@ class HomeScreen extends ConsumerWidget {
                     padding: const EdgeInsets.all(16),
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
-                      itemCount: 30,
+                      itemCount: todos.length,
                       itemBuilder: (context, i) {
                         return const TodoItem();
                       },
