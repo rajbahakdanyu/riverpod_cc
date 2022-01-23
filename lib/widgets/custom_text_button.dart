@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomTextButton extends StatefulWidget {
+import '/constant.dart';
+import '/screens/home.dart';
+
+class CustomTextButton extends ConsumerWidget {
   const CustomTextButton({
     Key? key,
     required this.func,
@@ -10,26 +14,23 @@ class CustomTextButton extends StatefulWidget {
 
   final VoidCallback func;
   final String title;
-  final String value;
+  final TodoListFilter value;
 
   @override
-  State<CustomTextButton> createState() => _CustomTextButtonState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activeFilter = ref.watch(todoListFilter);
 
-class _CustomTextButtonState extends State<CustomTextButton> {
-  @override
-  Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
         splashFactory: NoSplash.splashFactory,
       ),
-      onPressed: widget.func,
+      onPressed: func,
       child: Text(
-        widget.title,
+        title,
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
               fontSize: 18,
-              fontWeight: widget.value == widget.title ? FontWeight.bold : null,
-              color: widget.value == widget.title
+              fontWeight: value == activeFilter ? FontWeight.bold : null,
+              color: value == activeFilter
                   ? Colors.purple
                   : Colors.purple.shade300,
             ),

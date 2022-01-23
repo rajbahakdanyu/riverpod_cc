@@ -39,19 +39,13 @@ final filteredTodos = Provider<List<Todo>>((ref) {
   }
 });
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends ConsumerWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
   final TextEditingController taskController = TextEditingController();
-  String selectedTab = 'All';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -89,40 +83,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CustomTextButton(
-                        func: () {
-                          setState(() {
-                            selectedTab = 'All';
-                          });
-                        },
+                        func: () {},
                         title: 'All',
-                        value: selectedTab,
+                        value: TodoListFilter.all,
                       ),
                       CustomTextButton(
-                        func: () {
-                          setState(() {
-                            selectedTab = 'Doing';
-                          });
-                        },
+                        func: () {},
                         title: 'Doing',
-                        value: selectedTab,
                       ),
                       CustomTextButton(
-                        func: () {
-                          setState(() {
-                            selectedTab = 'Done';
-                          });
-                        },
+                        func: () {},
                         title: 'Done',
-                        value: selectedTab,
                       ),
                       CustomTextButton(
-                        func: () {
-                          setState(() {
-                            selectedTab = 'Favorite';
-                          });
-                        },
+                        func: () {},
                         title: 'Favorite',
-                        value: selectedTab,
                       ),
                     ],
                   ),
