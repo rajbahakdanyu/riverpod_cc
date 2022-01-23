@@ -3,7 +3,6 @@ import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();
 
-/// A read-only description of a todo-item
 class Todo {
   Todo({
     required this.description,

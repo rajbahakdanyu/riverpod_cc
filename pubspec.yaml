@@ -12,6 +12,7 @@ dependencies:
     cupertino_icons: ^1.0.2
     flutter_riverpod: ^1.0.3
     google_fonts: ^2.2.0
+    uuid: ^3.0.5
 
 dev_dependencies:
     flutter_test:
