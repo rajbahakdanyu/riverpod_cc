@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '/constant.dart';
 import '/models/todo.dart';
 import '/widgets/custom_text_button.dart';
+import '/widgets/todo_item.dart';
 
 final todoListProvider = StateNotifierProvider<TodoList, List<Todo>>((ref) {
   return TodoList([
@@ -40,7 +41,7 @@ final filteredTodos = Provider<List<Todo>>((ref) {
   }
 });
 
-final _currentTodo = Provider<Todo>((ref) => throw UnimplementedError());
+final currentTodo = Provider<Todo>((ref) => throw UnimplementedError());
 
 class HomeScreen extends ConsumerWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -168,7 +169,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           child: ProviderScope(
                             overrides: [
-                              _currentTodo.overrideWithValue(todos[i]),
+                              currentTodo.overrideWithValue(todos[i]),
                             ],
                             child: const TodoItem(),
                           ),
@@ -182,44 +183,6 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class TodoItem extends ConsumerWidget {
-  const TodoItem({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final todo = ref.watch(_currentTodo);
-
-    return ListTile(
-      leading: Tooltip(
-        message: 'Mark a task as done/doing',
-        child: Checkbox(
-          value: todo.completed,
-          onChanged: (value) =>
-              ref.read(todoListProvider.notifier).toggleComplete(
-                    todo.id,
-                  ),
-        ),
-      ),
-      title: Text(todo.description),
-      trailing: Tooltip(
-        message: 'Favorite a task',
-        child: IconButton(
-          onPressed: () {
-            ref.read(todoListProvider.notifier).toggleFavorite(
-                  todo.id,
-                );
-          },
-          icon: Icon(
-            todo.favorited ? Icons.star : Icons.star_border,
-            color: Colors.amber,
-          ),
-        ),
-      ),
-      horizontalTitleGap: 4,
     );
   }
 }
