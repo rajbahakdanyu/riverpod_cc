@@ -149,7 +149,12 @@ class HomeScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          child: const TodoItem(),
+                          child: ProviderScope(
+                            overrides: [
+                              _currentTodo.overrideWithValue(todos[i]),
+                            ],
+                            child: const TodoItem(),
+                          ),
                         );
                       },
                     ),
