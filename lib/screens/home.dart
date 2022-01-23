@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '/constant.dart';
 import '/models/todo.dart';
@@ -143,6 +144,10 @@ class HomeScreen extends ConsumerWidget {
                             ref
                                 .read(todoListProvider.notifier)
                                 .remove(todos[i]);
+
+                            Fluttertoast.showToast(
+                              msg: 'Deleted ${todos[i].description}',
+                            );
                           },
                           background: Container(
                             color: Colors.red,
