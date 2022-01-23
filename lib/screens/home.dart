@@ -3,6 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/widgets/custom_text_button.dart';
 
+enum TodoListFilter {
+  all,
+  doing,
+  done,
+  favorite,
+}
+
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
