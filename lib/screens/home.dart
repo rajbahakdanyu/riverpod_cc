@@ -89,29 +89,41 @@ class HomeScreen extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      CustomTextButton(
-                        func: () => ref.read(todoListFilter.notifier).state =
-                            TodoListFilter.all,
-                        title: 'All',
-                        value: TodoListFilter.all,
+                      Tooltip(
+                        message: 'View all tasks',
+                        child: CustomTextButton(
+                          func: () => ref.read(todoListFilter.notifier).state =
+                              TodoListFilter.all,
+                          title: 'All',
+                          value: TodoListFilter.all,
+                        ),
                       ),
-                      CustomTextButton(
-                        func: () => ref.read(todoListFilter.notifier).state =
-                            TodoListFilter.doing,
-                        title: 'Doing',
-                        value: TodoListFilter.doing,
+                      Tooltip(
+                        message: 'View all doing tasks',
+                        child: CustomTextButton(
+                          func: () => ref.read(todoListFilter.notifier).state =
+                              TodoListFilter.doing,
+                          title: 'Doing',
+                          value: TodoListFilter.doing,
+                        ),
                       ),
-                      CustomTextButton(
-                        func: () => ref.read(todoListFilter.notifier).state =
-                            TodoListFilter.done,
-                        title: 'Done',
-                        value: TodoListFilter.done,
+                      Tooltip(
+                        message: 'View all done tasks',
+                        child: CustomTextButton(
+                          func: () => ref.read(todoListFilter.notifier).state =
+                              TodoListFilter.done,
+                          title: 'Done',
+                          value: TodoListFilter.done,
+                        ),
                       ),
-                      CustomTextButton(
-                        func: () => ref.read(todoListFilter.notifier).state =
-                            TodoListFilter.favorite,
-                        title: 'Favorite',
-                        value: TodoListFilter.favorite,
+                      Tooltip(
+                        message: 'View all favorite tasks',
+                        child: CustomTextButton(
+                          func: () => ref.read(todoListFilter.notifier).state =
+                              TodoListFilter.favorite,
+                          title: 'Favorite',
+                          value: TodoListFilter.favorite,
+                        ),
                       ),
                     ],
                   ),
@@ -177,23 +189,29 @@ class TodoItem extends ConsumerWidget {
     final todo = ref.watch(_currentTodo);
 
     return ListTile(
-      leading: Checkbox(
-        value: todo.completed,
-        onChanged: (value) =>
-            ref.read(todoListProvider.notifier).toggleComplete(
-                  todo.id,
-                ),
+      leading: Tooltip(
+        message: 'Mark a task as done/doing',
+        child: Checkbox(
+          value: todo.completed,
+          onChanged: (value) =>
+              ref.read(todoListProvider.notifier).toggleComplete(
+                    todo.id,
+                  ),
+        ),
       ),
       title: Text(todo.description),
-      trailing: IconButton(
-        onPressed: () {
-          ref.read(todoListProvider.notifier).toggleFavorite(
-                todo.id,
-              );
-        },
-        icon: Icon(
-          todo.favorited ? Icons.star : Icons.star_border,
-          color: Colors.amber,
+      trailing: Tooltip(
+        message: 'Favorite a task',
+        child: IconButton(
+          onPressed: () {
+            ref.read(todoListProvider.notifier).toggleFavorite(
+                  todo.id,
+                );
+          },
+          icon: Icon(
+            todo.favorited ? Icons.star : Icons.star_border,
+            color: Colors.amber,
+          ),
         ),
       ),
       horizontalTitleGap: 4,
