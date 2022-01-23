@@ -136,37 +136,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       physics: const BouncingScrollPhysics(),
                       itemCount: 30,
                       itemBuilder: (context, i) {
-                        return Dismissible(
-                          key: Key(i.toString()),
-                          onDismissed: (direction) {},
-                          background: Container(
-                            color: Colors.red,
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Icon(
-                                  Icons.delete_outline,
-                                  color: Colors.white,
-                                ),
-                                Icon(
-                                  Icons.delete_outline,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ),
-                          child: ListTile(
-                            leading: const Icon(Icons.check_box_outlined),
-                            title: const Text('Task'),
-                            trailing: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.star_border),
-                            ),
-                            onTap: () {},
-                            horizontalTitleGap: 4,
-                          ),
-                        );
+                        return const TodoItem();
                       },
                     ),
                   ),
@@ -175,6 +145,58 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+final _currentTodo = Provider<Todo>((ref) => throw UnimplementedError());
+
+class TodoItem extends ConsumerWidget {
+  const TodoItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todo = ref.watch(_currentTodo);
+
+    return Dismissible(
+      key: Key(todo.id),
+      onDismissed: (direction) {},
+      background: Container(
+        color: Colors.red,
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Icon(
+              Icons.delete_outline,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.delete_outline,
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ),
+      child: ListTile(
+        leading: Checkbox(
+          value: todo.completed,
+          onChanged: (value) =>
+              ref.read(todoListProvider.notifier).toggleComplete(
+                    todo.id,
+                  ),
+        ),
+        title: const Text('Task'),
+        trailing: IconButton(
+          onPressed: () {
+            ref.read(todoListProvider.notifier).toggleFavorite(
+                  todo.id,
+                );
+          },
+          icon: Icon(todo.favorited ? Icons.star : Icons.star_border),
+        ),
+        horizontalTitleGap: 4,
       ),
     );
   }
