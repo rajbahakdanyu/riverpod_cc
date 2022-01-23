@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '/models/todo.dart';
 import '/widgets/custom_text_button.dart';
+
+final todoListProvider = StateNotifierProvider<TodoList, List<Todo>>((ref) {
+  return TodoList([
+    Todo(id: '1', description: 'Take a shower'),
+    Todo(id: '2', description: 'Bathe the dogs'),
+    Todo(id: '3', description: 'Go grocery shopping'),
+  ]);
+});
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
