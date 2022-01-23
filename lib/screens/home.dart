@@ -184,7 +184,7 @@ class TodoItem extends ConsumerWidget {
                   todo.id,
                 ),
       ),
-      title: const Text('Task'),
+      title: Text(todo.description),
       trailing: IconButton(
         onPressed: () {
           ref.read(todoListProvider.notifier).toggleFavorite(
