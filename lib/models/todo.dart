@@ -8,19 +8,20 @@ class Todo {
     required this.description,
     required this.id,
     this.completed = false,
+    this.favorited = false,
   });
 
   final String id;
   final String description;
+  final bool favorited;
   final bool completed;
 
   @override
   String toString() {
-    return 'Todo(description: $description, completed: $completed)';
+    return 'Todo(description: $description, completed: $completed, favorited: $favorited)';
   }
 }
 
-/// An object that controls a list of [Todo].
 class TodoList extends StateNotifier<List<Todo>> {
   TodoList([List<Todo>? initialTodos]) : super(initialTodos ?? []);
 
@@ -34,7 +35,7 @@ class TodoList extends StateNotifier<List<Todo>> {
     ];
   }
 
-  void toggle(String id) {
+  void toggleComplete(String id) {
     state = [
       for (final todo in state)
         if (todo.id == id)
@@ -42,6 +43,22 @@ class TodoList extends StateNotifier<List<Todo>> {
             id: todo.id,
             completed: !todo.completed,
             description: todo.description,
+            favorited: todo.favorited,
+          )
+        else
+          todo,
+    ];
+  }
+
+  void toggleFavorite(String id) {
+    state = [
+      for (final todo in state)
+        if (todo.id == id)
+          Todo(
+            id: todo.id,
+            completed: todo.completed,
+            description: todo.description,
+            favorited: !todo.favorited,
           )
         else
           todo,
@@ -56,6 +73,7 @@ class TodoList extends StateNotifier<List<Todo>> {
             id: todo.id,
             completed: todo.completed,
             description: description,
+            favorited: todo.favorited,
           )
         else
           todo,
