@@ -83,21 +83,28 @@ class HomeScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CustomTextButton(
-                        func: () {},
+                        func: () => ref.read(todoListFilter.notifier).state =
+                            TodoListFilter.all,
                         title: 'All',
                         value: TodoListFilter.all,
                       ),
                       CustomTextButton(
-                        func: () {},
+                        func: () => ref.read(todoListFilter.notifier).state =
+                            TodoListFilter.doing,
                         title: 'Doing',
+                        value: TodoListFilter.doing,
                       ),
                       CustomTextButton(
-                        func: () {},
+                        func: () => ref.read(todoListFilter.notifier).state =
+                            TodoListFilter.done,
                         title: 'Done',
+                        value: TodoListFilter.done,
                       ),
                       CustomTextButton(
-                        func: () {},
+                        func: () => ref.read(todoListFilter.notifier).state =
+                            TodoListFilter.favorite,
                         title: 'Favorite',
+                        value: TodoListFilter.favorite,
                       ),
                     ],
                   ),
