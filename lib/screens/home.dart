@@ -191,7 +191,10 @@ class TodoItem extends ConsumerWidget {
                 todo.id,
               );
         },
-        icon: Icon(todo.favorited ? Icons.star : Icons.star_border),
+        icon: Icon(
+          todo.favorited ? Icons.star : Icons.star_border,
+          color: Colors.amber,
+        ),
       ),
       horizontalTitleGap: 4,
     );
