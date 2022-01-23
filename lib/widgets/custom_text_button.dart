@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/constant.dart';
-import '/screens/home.dart';
+import '/providers/providers.dart';
 
 class CustomTextButton extends ConsumerWidget {
   const CustomTextButton({
